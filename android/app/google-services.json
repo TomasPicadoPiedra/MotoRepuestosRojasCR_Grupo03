@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "667665286876",
+    "project_id": "motorepuestosrojasapp",
+    "storage_bucket": "motorepuestosrojasapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667665286876:android:b693acaf069b0485a2d619",
+        "android_client_info": {
+          "package_name": "com.mrr2024.motorepuestosrojascr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCl0NUqWnrASNxuDPu_xOnLTUwqkG9NKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
