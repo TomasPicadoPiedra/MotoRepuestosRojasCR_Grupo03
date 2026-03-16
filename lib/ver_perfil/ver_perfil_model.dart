@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'inventario_widget.dart' show InventarioWidget;
+import 'ver_perfil_widget.dart' show VerPerfilWidget;
 import 'package:flutter/material.dart';
 
-class InventarioModel extends FlutterFlowModel<InventarioWidget> {
+class VerPerfilModel extends FlutterFlowModel<VerPerfilWidget> {
   @override
   void initState(BuildContext context) {}
 

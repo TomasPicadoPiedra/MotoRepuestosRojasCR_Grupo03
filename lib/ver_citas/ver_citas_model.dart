@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'pagina_principal_widget.dart' show PaginaPrincipalWidget;
+import 'ver_citas_widget.dart' show VerCitasWidget;
 import 'package:flutter/material.dart';
 
-class PaginaPrincipalModel extends FlutterFlowModel<PaginaPrincipalWidget> {
+class VerCitasModel extends FlutterFlowModel<VerCitasWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -77,24 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
           ? PaginaPrincipalWidget()
-          : InicioSesionWidget(),
+          : IniciarSesionWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? PaginaPrincipalWidget()
-              : InicioSesionWidget(),
-        ),
-        FFRoute(
-          name: InicioSesionWidget.routeName,
-          path: InicioSesionWidget.routePath,
-          builder: (context, params) => InicioSesionWidget(),
-        ),
-        FFRoute(
-          name: PaginaPrincipalWidget.routeName,
-          path: PaginaPrincipalWidget.routePath,
-          builder: (context, params) => PaginaPrincipalWidget(),
+              : IniciarSesionWidget(),
         ),
         FFRoute(
           name: RegistrarseWidget.routeName,
@@ -102,9 +92,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RegistrarseWidget(),
         ),
         FFRoute(
-          name: InventarioWidget.routeName,
-          path: InventarioWidget.routePath,
-          builder: (context, params) => InventarioWidget(),
+          name: PaginaPrincipalWidget.routeName,
+          path: PaginaPrincipalWidget.routePath,
+          builder: (context, params) => PaginaPrincipalWidget(),
+        ),
+        FFRoute(
+          name: VerPerfilWidget.routeName,
+          path: VerPerfilWidget.routePath,
+          builder: (context, params) => VerPerfilWidget(),
+        ),
+        FFRoute(
+          name: IniciarSesionWidget.routeName,
+          path: IniciarSesionWidget.routePath,
+          builder: (context, params) => IniciarSesionWidget(),
+        ),
+        FFRoute(
+          name: CitasWidget.routeName,
+          path: CitasWidget.routePath,
+          builder: (context, params) => CitasWidget(),
+        ),
+        FFRoute(
+          name: VerCitasWidget.routeName,
+          path: VerCitasWidget.routePath,
+          builder: (context, params) => VerCitasWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -275,7 +285,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/inicioSesion';
+            return '/IniciarSesion';
           }
           return null;
         },

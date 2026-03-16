@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'registrarse_widget.dart' show RegistrarseWidget;
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,9 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
   TextEditingController? txtConfirmarContrasennaTextController;
   String? Function(BuildContext, String?)?
       txtConfirmarContrasennaTextControllerValidator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {}

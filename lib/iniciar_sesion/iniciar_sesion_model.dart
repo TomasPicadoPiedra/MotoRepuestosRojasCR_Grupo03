@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'inicio_sesion_widget.dart' show InicioSesionWidget;
+import 'iniciar_sesion_widget.dart' show IniciarSesionWidget;
 import 'package:flutter/material.dart';
 
-class InicioSesionModel extends FlutterFlowModel<InicioSesionWidget> {
+class IniciarSesionModel extends FlutterFlowModel<IniciarSesionWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for txtCorreo widget.
