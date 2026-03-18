@@ -112,11 +112,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CitasWidget(),
         ),
         FFRoute(
-          name: VerCitasWidget.routeName,
-          path: VerCitasWidget.routePath,
-          builder: (context, params) => VerCitasWidget(),
-        ),
-        FFRoute(
           name: VentasWidget.routeName,
           path: VentasWidget.routePath,
           builder: (context, params) => VentasWidget(),
@@ -125,6 +120,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ReportesWidget.routeName,
           path: ReportesWidget.routePath,
           builder: (context, params) => ReportesWidget(),
+        ),
+        FFRoute(
+          name: InventarioWidget.routeName,
+          path: InventarioWidget.routePath,
+          builder: (context, params) => InventarioWidget(),
+        ),
+        FFRoute(
+          name: UsuarioWidget.routeName,
+          path: UsuarioWidget.routePath,
+          builder: (context, params) => UsuarioWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

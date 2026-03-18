@@ -1,8 +1,9 @@
-import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'registrarse_model.dart';
@@ -45,6 +46,9 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
 
     _model.txtConfirmarContrasennaTextController ??= TextEditingController();
     _model.txtConfirmarContrasennaFocusNode ??= FocusNode();
+
+    _model.txtNumeroTextController ??= TextEditingController();
+    _model.txtNumeroFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -94,7 +98,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                   children: [
                     Container(
                       width: 316.6,
-                      height: 475.61,
+                      height: 492.22,
                       decoration: BoxDecoration(
                         color: Color(0xFF6B0000),
                         borderRadius: BorderRadius.only(
@@ -872,7 +876,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                                   focusNode: _model.txtContrasennaFocusNode,
                                   autofocus: false,
                                   enabled: true,
-                                  obscureText: false,
+                                  obscureText: !_model.txtContrasennaVisibility,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -955,6 +959,20 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
+                                    suffixIcon: InkWell(
+                                      onTap: () async {
+                                        safeSetState(() => _model
+                                                .txtContrasennaVisibility =
+                                            !_model.txtContrasennaVisibility);
+                                      },
+                                      focusNode: FocusNode(skipTraversal: true),
+                                      child: Icon(
+                                        _model.txtContrasennaVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        size: 22,
+                                      ),
+                                    ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -1025,7 +1043,8 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                                       _model.txtConfirmarContrasennaFocusNode,
                                   autofocus: false,
                                   enabled: true,
-                                  obscureText: false,
+                                  obscureText:
+                                      !_model.txtConfirmarContrasennaVisibility,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -1109,6 +1128,21 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
+                                    suffixIcon: InkWell(
+                                      onTap: () async {
+                                        safeSetState(() => _model
+                                                .txtConfirmarContrasennaVisibility =
+                                            !_model
+                                                .txtConfirmarContrasennaVisibility);
+                                      },
+                                      focusNode: FocusNode(skipTraversal: true),
+                                      child: Icon(
+                                        _model.txtConfirmarContrasennaVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        size: 22,
+                                      ),
+                                    ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -1144,7 +1178,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
-                                'Rol',
+                                'Número de Telefono',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -1169,19 +1203,112 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 10.0),
-                              child: FlutterFlowDropDown<String>(
-                                controller: _model.dropDownValueController ??=
-                                    FormFieldController<String>(null),
-                                options: ['Option 1', 'Option 2', 'Option 3'],
-                                onChanged: (val) => safeSetState(
-                                    () => _model.dropDownValue = val),
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: Container(
                                 width: 280.0,
-                                height: 40.0,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
+                                child: TextFormField(
+                                  controller: _model.txtNumeroTextController,
+                                  focusNode: _model.txtNumeroFocusNode,
+                                  autofocus: false,
+                                  enabled: true,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                    hintText: 'Ingrese su numero telefonico',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    filled: true,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -1189,33 +1316,14 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                hintText: 'Select...',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
+                                  keyboardType: TextInputType.number,
+                                  cursorColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  enableInteractiveSelection: true,
+                                  validator: _model
+                                      .txtNumeroTextControllerValidator
+                                      .asValidator(context),
                                 ),
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 2.0,
-                                borderColor: Colors.transparent,
-                                borderWidth: 0.0,
-                                borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 12.0, 0.0),
-                                hidesUnderline: true,
-                                isOverButton: false,
-                                isSearchable: false,
-                                isMultiSelect: false,
                               ),
                             ),
                           ],
@@ -1232,8 +1340,43 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FFButtonWidget(
-                      onPressed: () {
-                        print('btnRegistrarse pressed ...');
+                      onPressed: () async {
+                        GoRouter.of(context).prepareAuthEvent();
+                        if (_model.txtContrasennaTextController.text !=
+                            _model.txtConfirmarContrasennaTextController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Passwords don\'t match!',
+                              ),
+                            ),
+                          );
+                          return;
+                        }
+
+                        final user = await authManager.createAccountWithEmail(
+                          context,
+                          _model.txtCorreoTextController.text,
+                          _model.txtContrasennaTextController.text,
+                        );
+                        if (user == null) {
+                          return;
+                        }
+
+                        await UsersRecord.collection
+                            .doc(user.uid)
+                            .update(createUsersRecordData(
+                              displayName: _model.txtNombreTextController.text,
+                              email: _model.txtCorreoTextController.text,
+                              phoneNumber: _model.txtNumeroTextController.text,
+                              apellidoMaterno:
+                                  _model.txtApellidoMaternoTextController.text,
+                              apellidoPaterno:
+                                  _model.txtApellidoPaternoTextController.text,
+                            ));
+
+                        context.pushNamedAuth(
+                            IniciarSesionWidget.routeName, context.mounted);
                       },
                       text: 'Registrarse',
                       options: FFButtonOptions(
@@ -1243,7 +1386,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFFD9D9D9),
+                        color: Color(0xFF848484),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.interTight(

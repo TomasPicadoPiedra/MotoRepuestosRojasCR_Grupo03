@@ -1,6 +1,8 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'iniciar_sesion_model.dart';
@@ -293,7 +295,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                   focusNode: _model.txtContrasennaFocusNode,
                                   autofocus: false,
                                   enabled: true,
-                                  obscureText: false,
+                                  obscureText: !_model.txtContrasennaVisibility,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -376,6 +378,20 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
+                                    suffixIcon: InkWell(
+                                      onTap: () async {
+                                        safeSetState(() => _model
+                                                .txtContrasennaVisibility =
+                                            !_model.txtContrasennaVisibility);
+                                      },
+                                      focusNode: FocusNode(skipTraversal: true),
+                                      child: Icon(
+                                        _model.txtContrasennaVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        size: 22,
+                                      ),
+                                    ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -421,8 +437,20 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FFButtonWidget(
-                      onPressed: () {
-                        print('btnIniciarSesion pressed ...');
+                      onPressed: () async {
+                        GoRouter.of(context).prepareAuthEvent();
+
+                        final user = await authManager.signInWithEmail(
+                          context,
+                          _model.txtCorreoTextController.text,
+                          _model.txtContrasennaTextController.text,
+                        );
+                        if (user == null) {
+                          return;
+                        }
+
+                        context.goNamedAuth(
+                            PaginaPrincipalWidget.routeName, context.mounted);
                       },
                       text: 'Iniciar Sesion',
                       options: FFButtonOptions(
@@ -479,8 +507,8 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('btnRegistrarse pressed ...');
+                        onPressed: () async {
+                          context.pushNamed(RegistrarseWidget.routeName);
                         },
                         text: 'Registrarse',
                         options: FFButtonOptions(

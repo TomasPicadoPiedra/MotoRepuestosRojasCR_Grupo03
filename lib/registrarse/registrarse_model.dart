@@ -1,5 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'registrarse_widget.dart' show RegistrarseWidget;
 import 'package:flutter/material.dart';
 
@@ -27,19 +27,25 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
   // State field(s) for txtContrasenna widget.
   FocusNode? txtContrasennaFocusNode;
   TextEditingController? txtContrasennaTextController;
+  late bool txtContrasennaVisibility;
   String? Function(BuildContext, String?)?
       txtContrasennaTextControllerValidator;
   // State field(s) for txtConfirmarContrasenna widget.
   FocusNode? txtConfirmarContrasennaFocusNode;
   TextEditingController? txtConfirmarContrasennaTextController;
+  late bool txtConfirmarContrasennaVisibility;
   String? Function(BuildContext, String?)?
       txtConfirmarContrasennaTextControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for txtNumero widget.
+  FocusNode? txtNumeroFocusNode;
+  TextEditingController? txtNumeroTextController;
+  String? Function(BuildContext, String?)? txtNumeroTextControllerValidator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    txtContrasennaVisibility = false;
+    txtConfirmarContrasennaVisibility = false;
+  }
 
   @override
   void dispose() {
@@ -60,5 +66,8 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
 
     txtConfirmarContrasennaFocusNode?.dispose();
     txtConfirmarContrasennaTextController?.dispose();
+
+    txtNumeroFocusNode?.dispose();
+    txtNumeroTextController?.dispose();
   }
 }

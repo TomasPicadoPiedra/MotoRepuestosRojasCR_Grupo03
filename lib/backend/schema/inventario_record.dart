@@ -45,15 +45,25 @@ class InventarioRecord extends FirestoreRecord {
   double get precioCompra => _precioCompra ?? 0.0;
   bool hasPrecioCompra() => _precioCompra != null;
 
-  // "precioVenta" field.
-  double? _precioVenta;
-  double get precioVenta => _precioVenta ?? 0.0;
-  bool hasPrecioVenta() => _precioVenta != null;
-
   // "imagen" field.
   String? _imagen;
   String get imagen => _imagen ?? '';
   bool hasImagen() => _imagen != null;
+
+  // "porcentaje" field.
+  double? _porcentaje;
+  double get porcentaje => _porcentaje ?? 0.0;
+  bool hasPorcentaje() => _porcentaje != null;
+
+  // "cantidad" field.
+  int? _cantidad;
+  int get cantidad => _cantidad ?? 0;
+  bool hasCantidad() => _cantidad != null;
+
+  // "precioVenta" field.
+  double? _precioVenta;
+  double get precioVenta => _precioVenta ?? 0.0;
+  bool hasPrecioVenta() => _precioVenta != null;
 
   void _initializeFields() {
     _nombreP = snapshotData['NombreP'] as String?;
@@ -62,8 +72,10 @@ class InventarioRecord extends FirestoreRecord {
     _stockActual = castToType<int>(snapshotData['stockActual']);
     _stockMin = castToType<int>(snapshotData['stockMin']);
     _precioCompra = castToType<double>(snapshotData['precioCompra']);
-    _precioVenta = castToType<double>(snapshotData['precioVenta']);
     _imagen = snapshotData['imagen'] as String?;
+    _porcentaje = castToType<double>(snapshotData['porcentaje']);
+    _cantidad = castToType<int>(snapshotData['cantidad']);
+    _precioVenta = castToType<double>(snapshotData['precioVenta']);
   }
 
   static CollectionReference get collection =>
@@ -107,8 +119,10 @@ Map<String, dynamic> createInventarioRecordData({
   int? stockActual,
   int? stockMin,
   double? precioCompra,
-  double? precioVenta,
   String? imagen,
+  double? porcentaje,
+  int? cantidad,
+  double? precioVenta,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,8 +132,10 @@ Map<String, dynamic> createInventarioRecordData({
       'stockActual': stockActual,
       'stockMin': stockMin,
       'precioCompra': precioCompra,
-      'precioVenta': precioVenta,
       'imagen': imagen,
+      'porcentaje': porcentaje,
+      'cantidad': cantidad,
+      'precioVenta': precioVenta,
     }.withoutNulls,
   );
 
@@ -137,8 +153,10 @@ class InventarioRecordDocumentEquality implements Equality<InventarioRecord> {
         e1?.stockActual == e2?.stockActual &&
         e1?.stockMin == e2?.stockMin &&
         e1?.precioCompra == e2?.precioCompra &&
-        e1?.precioVenta == e2?.precioVenta &&
-        e1?.imagen == e2?.imagen;
+        e1?.imagen == e2?.imagen &&
+        e1?.porcentaje == e2?.porcentaje &&
+        e1?.cantidad == e2?.cantidad &&
+        e1?.precioVenta == e2?.precioVenta;
   }
 
   @override
@@ -149,8 +167,10 @@ class InventarioRecordDocumentEquality implements Equality<InventarioRecord> {
         e?.stockActual,
         e?.stockMin,
         e?.precioCompra,
-        e?.precioVenta,
-        e?.imagen
+        e?.imagen,
+        e?.porcentaje,
+        e?.cantidad,
+        e?.precioVenta
       ]);
 
   @override

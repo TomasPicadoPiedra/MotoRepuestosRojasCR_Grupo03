@@ -126,8 +126,8 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('btnInventario pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(InventarioWidget.routeName);
                           },
                           text: 'Inventario',
                           icon: Icon(

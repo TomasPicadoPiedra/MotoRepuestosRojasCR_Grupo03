@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'iniciar_sesion_widget.dart' show IniciarSesionWidget;
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,14 @@ class IniciarSesionModel extends FlutterFlowModel<IniciarSesionWidget> {
   // State field(s) for txtContrasenna widget.
   FocusNode? txtContrasennaFocusNode;
   TextEditingController? txtContrasennaTextController;
+  late bool txtContrasennaVisibility;
   String? Function(BuildContext, String?)?
       txtContrasennaTextControllerValidator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    txtContrasennaVisibility = false;
+  }
 
   @override
   void dispose() {
