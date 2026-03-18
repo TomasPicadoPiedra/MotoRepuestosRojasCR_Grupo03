@@ -37,10 +37,6 @@ class InventarioModel extends FlutterFlowModel<InventarioWidget> {
   FocusNode? txtporcentajeFocusNode;
   TextEditingController? txtporcentajeTextController;
   String? Function(BuildContext, String?)? txtporcentajeTextControllerValidator;
-  // State field(s) for txtpreciov widget.
-  FocusNode? txtpreciovFocusNode;
-  TextEditingController? txtpreciovTextController;
-  String? Function(BuildContext, String?)? txtpreciovTextControllerValidator;
   // State field(s) for txtcantidad widget.
   FocusNode? txtcantidadFocusNode;
   TextEditingController? txtcantidadTextController;
@@ -70,9 +66,6 @@ class InventarioModel extends FlutterFlowModel<InventarioWidget> {
 
     txtporcentajeFocusNode?.dispose();
     txtporcentajeTextController?.dispose();
-
-    txtpreciovFocusNode?.dispose();
-    txtpreciovTextController?.dispose();
 
     txtcantidadFocusNode?.dispose();
     txtcantidadTextController?.dispose();

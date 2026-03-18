@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/modificar_producto_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,6 +10,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,19 +53,11 @@ class _InventarioWidgetState extends State<InventarioWidget>
     _model.txtmarcaTextController ??= TextEditingController();
     _model.txtmarcaFocusNode ??= FocusNode();
 
-    _model.txtpreciocTextController ??= TextEditingController();
+    _model.txtpreciocTextController ??= TextEditingController(text: '0');
     _model.txtpreciocFocusNode ??= FocusNode();
 
-    _model.txtporcentajeTextController ??= TextEditingController();
+    _model.txtporcentajeTextController ??= TextEditingController(text: '0');
     _model.txtporcentajeFocusNode ??= FocusNode();
-
-    _model.txtpreciovTextController ??= TextEditingController(
-        text: functions
-            .calcularPrecioVenta(
-                double.parse(_model.txtpreciocTextController.text),
-                double.parse(_model.txtporcentajeTextController.text))
-            .toString());
-    _model.txtpreciovFocusNode ??= FocusNode();
 
     _model.txtcantidadTextController ??= TextEditingController();
     _model.txtcantidadFocusNode ??= FocusNode();
@@ -1194,11 +1188,21 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                 _model.txtpreciocTextController,
                                             focusNode:
                                                 _model.txtpreciocFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.txtpreciocTextController',
+                                              Duration(milliseconds: 2000),
+                                              () async {
+                                                safeSetState(() {});
+                                              },
+                                            ),
                                             autofocus: false,
                                             enabled: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               isDense: true,
+                                              labelText:
+                                                  'Digite el precio costo',
                                               labelStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -1326,6 +1330,7 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
+                                            keyboardType: TextInputType.number,
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
@@ -1344,11 +1349,20 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                 .txtporcentajeTextController,
                                             focusNode:
                                                 _model.txtporcentajeFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.txtporcentajeTextController',
+                                              Duration(milliseconds: 2000),
+                                              () async {
+                                                safeSetState(() {});
+                                              },
+                                            ),
                                             autofocus: false,
                                             enabled: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               isDense: true,
+                                              labelText: 'Digite el porcentaje',
                                               labelStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -1475,6 +1489,7 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
+                                            keyboardType: TextInputType.number,
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
@@ -1484,154 +1499,75 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                 .asValidator(context),
                                           ),
                                         ),
-                                        Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.6,
-                                          child: TextFormField(
-                                            controller:
-                                                _model.txtpreciovTextController,
-                                            focusNode:
-                                                _model.txtpreciovFocusNode,
-                                            autofocus: false,
-                                            enabled: true,
-                                            readOnly: true,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              isDense: true,
-                                              labelStyle:
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              'Precio venta:',
+                                              style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                      .bodyMedium
                                                       .override(
                                                         font: GoogleFonts.inter(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontWeight,
+                                                              FontWeight.bold,
                                                           fontStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .labelMedium
+                                                                  .bodyMedium
                                                                   .fontStyle,
                                                         ),
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontWeight,
+                                                            FontWeight.bold,
                                                         fontStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium
+                                                                .bodyMedium
                                                                 .fontStyle,
                                                       ),
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              filled: true,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                            cursorColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            enableInteractiveSelection: true,
-                                            validator: _model
-                                                .txtpreciovTextControllerValidator
-                                                .asValidator(context),
-                                          ),
+                                            Text(
+                                              valueOrDefault<String>(
+                                                functions
+                                                    .calcularPrecioVenta(
+                                                        double.parse(_model
+                                                            .txtpreciocTextController
+                                                            .text),
+                                                        double.parse(_model
+                                                            .txtporcentajeTextController
+                                                            .text))
+                                                    .toString(),
+                                                '0',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                          ],
                                         ),
                                         Container(
                                           width:
@@ -1986,9 +1922,49 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                           Color(0xFFF9F470),
                                                       icon:
                                                           Icons.mode_edit_sharp,
-                                                      onPressed: (_) {
-                                                        print(
-                                                            'SlidableActionWidget pressed ...');
+                                                      onPressed: (_) async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () {
+                                                                FocusScope.of(
+                                                                        context)
+                                                                    .unfocus();
+                                                                FocusManager
+                                                                    .instance
+                                                                    .primaryFocus
+                                                                    ?.unfocus();
+                                                              },
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    Container(
+                                                                  height: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .height *
+                                                                      0.5,
+                                                                  child:
+                                                                      ModificarProductoWidget(
+                                                                    referenciaProducto:
+                                                                        columnInventarioRecord
+                                                                            .reference,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
                                                       },
                                                     ),
                                                   ],
@@ -2144,6 +2120,26 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                                         await columnInventarioRecord
                                                             .reference
                                                             .delete();
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              '¡Producto eliminado con éxito!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                Color(
+                                                                    0xFFF9F470),
+                                                          ),
+                                                        );
                                                       },
                                                     ),
                                                   ],
@@ -2334,22 +2330,27 @@ class _InventarioWidgetState extends State<InventarioWidget>
                                         imagen: _model
                                             .uploadedFileUrl_uploadDataA2w,
                                       ));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Producto guardado con éxito!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor: Color(0xFF047D00),
+                                    ),
+                                  );
                                   safeSetState(() {
                                     _model.txtnombreTextController?.clear();
                                     _model.txtcodigoTextController?.clear();
                                     _model.txtmarcaTextController?.clear();
-                                    _model.txtpreciocTextController?.clear();
-                                    _model.txtporcentajeTextController?.clear();
-                                    _model.txtpreciovTextController?.text =
-                                        functions
-                                            .calcularPrecioVenta(
-                                                double.parse(_model
-                                                    .txtpreciocTextController
-                                                    .text),
-                                                double.parse(_model
-                                                    .txtporcentajeTextController
-                                                    .text))
-                                            .toString();
+                                    _model.txtpreciocTextController?.text = '0';
+
+                                    _model.txtporcentajeTextController?.text =
+                                        '0';
 
                                     _model.txtcantidadTextController?.clear();
                                   });

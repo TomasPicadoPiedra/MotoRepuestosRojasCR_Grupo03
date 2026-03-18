@@ -29,10 +29,6 @@ class ModificarProductoModel extends FlutterFlowModel<ModificarProductoWidget> {
   FocusNode? textFieldFocusNode6;
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode7;
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -56,8 +52,5 @@ class ModificarProductoModel extends FlutterFlowModel<ModificarProductoWidget> {
 
     textFieldFocusNode6?.dispose();
     textController6?.dispose();
-
-    textFieldFocusNode7?.dispose();
-    textController7?.dispose();
   }
 }
