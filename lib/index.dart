@@ -9,3 +9,4 @@ export '/reportes/reportes_widget.dart' show ReportesWidget;
 export '/inventario/inventario_widget.dart' show InventarioWidget;
 export '/usuario/usuario_widget.dart' show UsuarioWidget;
 export '/ver_perfil/ver_perfil_widget.dart' show VerPerfilWidget;
+export '/servicios/servicios_widget.dart' show ServiciosWidget;

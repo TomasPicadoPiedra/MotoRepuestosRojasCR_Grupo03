@@ -326,8 +326,8 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('btnServicio pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(ServiciosWidget.routeName);
                           },
                           text: 'Servicios',
                           icon: Icon(

@@ -130,6 +130,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: VerPerfilWidget.routeName,
           path: VerPerfilWidget.routePath,
           builder: (context, params) => VerPerfilWidget(),
+        ),
+        FFRoute(
+          name: ServiciosWidget.routeName,
+          path: ServiciosWidget.routePath,
+          builder: (context, params) => ServiciosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
