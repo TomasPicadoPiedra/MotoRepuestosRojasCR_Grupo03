@@ -166,8 +166,8 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('btnCitas pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(CitasWidget.routeName);
                           },
                           text: 'Citas',
                           icon: Icon(
@@ -206,8 +206,8 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('btnUsuarios pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(UsuarioWidget.routeName);
                           },
                           text: 'Usuarios',
                           icon: Icon(
@@ -246,8 +246,8 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('btnReportes pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(ReportesWidget.routeName);
                           },
                           text: 'Reportes',
                           icon: Icon(

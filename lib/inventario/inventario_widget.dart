@@ -85,52 +85,57 @@ class _InventarioWidgetState extends State<InventarioWidget>
         appBar: AppBar(
           backgroundColor: Color(0xFF6B0000),
           automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Stack(
+          actions: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/images/LogoLocal.jpeg',
-                      width: MediaQuery.sizeOf(context).width * 0.35,
-                      height: MediaQuery.sizeOf(context).height * 0.28,
-                      fit: BoxFit.cover,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    child: AuthUserStreamWidget(
+                      builder: (context) => Text(
+                        currentUserDisplayName,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed(VerPerfilWidget.routeName);
+                    },
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 40.0,
                     ),
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                child: AuthUserStreamWidget(
-                  builder: (context) => Text(
-                    currentUserDisplayName,
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          font: GoogleFonts.interTight(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .fontStyle,
-                          ),
-                          color: Colors.white,
-                          fontSize: 22.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .fontStyle,
-                        ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          actions: [],
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),

@@ -97,11 +97,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PaginaPrincipalWidget(),
         ),
         FFRoute(
-          name: VerPerfilWidget.routeName,
-          path: VerPerfilWidget.routePath,
-          builder: (context, params) => VerPerfilWidget(),
-        ),
-        FFRoute(
           name: IniciarSesionWidget.routeName,
           path: IniciarSesionWidget.routePath,
           builder: (context, params) => IniciarSesionWidget(),
@@ -130,6 +125,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: UsuarioWidget.routeName,
           path: UsuarioWidget.routePath,
           builder: (context, params) => UsuarioWidget(),
+        ),
+        FFRoute(
+          name: VerPerfilWidget.routeName,
+          path: VerPerfilWidget.routePath,
+          builder: (context, params) => VerPerfilWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

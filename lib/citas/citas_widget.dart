@@ -3,7 +3,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -93,19 +92,10 @@ class _CitasWidgetState extends State<CitasWidget>
                       ),
                     ),
                   ),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.pushNamed(VerPerfilWidget.routeName);
-                    },
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                      size: 40.0,
-                    ),
+                  Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: 40.0,
                   ),
                 ],
               ),
@@ -266,24 +256,51 @@ class _CitasWidgetState extends State<CitasWidget>
                               child: TabBarView(
                                 controller: _model.tabBarController,
                                 children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        width: 468.71,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                        ),
-                                        child: RichText(
-                                          textScaler:
-                                              MediaQuery.of(context).textScaler,
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: 'Clientes:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                  StreamBuilder<List<CitasRecord>>(
+                                    stream: queryCitasRecord(),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<CitasRecord> columnCitasRecordList =
+                                          snapshot.data!;
+
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: List.generate(
+                                            columnCitasRecordList.length,
+                                            (columnIndex) {
+                                          final columnCitasRecord =
+                                              columnCitasRecordList[
+                                                  columnIndex];
+                                          return Container(
+                                            width: 468.71,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color: Colors.black,
+                                            ),
+                                            child: RichText(
+                                              textScaler: MediaQuery.of(context)
+                                                  .textScaler,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: 'Clientes:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           font:
@@ -312,107 +329,123 @@ class _CitasWidgetState extends State<CitasWidget>
                                                                   .bodyMedium
                                                                   .fontStyle,
                                                         ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Hello World ',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Fecha y Hora:',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Hello World ',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Motivo:',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Hello World ',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Modelo de Moto:',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Hello World ',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Placa:',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Hello World ',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Estado:',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: 'Hello World ',
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                ),
-                                              )
-                                            ],
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
                                                   ),
-                                                  color: Colors.white,
-                                                  fontSize: 20.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                                  TextSpan(
+                                                    text:
+                                                        valueOrDefault<String>(
+                                                      columnCitasRecord
+                                                          .cliente?.id,
+                                                      'Cliente',
+                                                    ),
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: 'Fecha y Hora:',
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: dateTimeFormat(
+                                                        "MMMMEEEEd",
+                                                        columnCitasRecord
+                                                            .fechaHora!),
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: 'Motivo:',
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: columnCitasRecord
+                                                        .motivo,
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: 'Modelo de Moto:',
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: columnCitasRecord
+                                                        .modeloMoto,
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: 'Placa:',
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        columnCitasRecord.placa,
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: 'Estado:',
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: columnCitasRecord
+                                                        .estado,
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  )
+                                                ],
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: Colors.white,
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                      );
+                                    },
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
