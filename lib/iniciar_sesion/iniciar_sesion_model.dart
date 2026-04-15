@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'iniciar_sesion_widget.dart' show IniciarSesionWidget;
@@ -16,6 +17,8 @@ class IniciarSesionModel extends FlutterFlowModel<IniciarSesionWidget> {
   late bool txtContrasennaVisibility;
   String? Function(BuildContext, String?)?
       txtContrasennaTextControllerValidator;
+  // Stores action output result for [Backend Call - Read Document] action in btnIniciarSesion widget.
+  UsersRecord? userDocument;
 
   @override
   void initState(BuildContext context) {

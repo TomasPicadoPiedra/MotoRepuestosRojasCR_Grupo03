@@ -48,6 +48,27 @@ class _VerPerfilWidgetState extends State<VerPerfilWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFF6B0000),
+        appBar: AppBar(
+          backgroundColor: Color(0xFF6B0000),
+          automaticallyImplyLeading: true,
+          leading: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              context.safePop();
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              size: 24.0,
+            ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -83,26 +104,6 @@ class _VerPerfilWidgetState extends State<VerPerfilWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AuthUserStreamWidget(
-                      builder: (context) => ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          currentUserPhoto,
-                          width: 120.0,
-                          height: 120.0,
-                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -224,12 +225,21 @@ class _VerPerfilWidgetState extends State<VerPerfilWidget> {
                               size: 50.0,
                             ),
                           ),
-                          Text(
-                            'Hello World',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.inter(
+                          AuthUserStreamWidget(
+                            builder: (context) => Text(
+                              valueOrDefault(currentUserDocument?.rol, ''),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .fontWeight,
@@ -237,14 +247,7 @@ class _VerPerfilWidgetState extends State<VerPerfilWidget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                ),
+                            ),
                           ),
                         ],
                       ),

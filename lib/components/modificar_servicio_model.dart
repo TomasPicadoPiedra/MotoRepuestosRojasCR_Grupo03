@@ -21,6 +21,8 @@ class ModificarServicioModel extends FlutterFlowModel<ModificarServicioWidget> {
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue;
 
   @override
   void initState(BuildContext context) {}

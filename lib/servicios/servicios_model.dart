@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 class ServiciosModel extends FlutterFlowModel<ServiciosWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // State field(s) for txtBuscador widget.
+  FocusNode? txtBuscadorFocusNode;
+  TextEditingController? txtBuscadorTextController;
+  String? Function(BuildContext, String?)? txtBuscadorTextControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -22,20 +26,30 @@ class ServiciosModel extends FlutterFlowModel<ServiciosWidget> {
   TextEditingController? txtdescripcionTextController;
   String? Function(BuildContext, String?)?
       txtdescripcionTextControllerValidator;
-  // State field(s) for txtprecio widget.
-  FocusNode? txtprecioFocusNode;
-  TextEditingController? txtprecioTextController;
-  String? Function(BuildContext, String?)? txtprecioTextControllerValidator;
   // State field(s) for txtduracion widget.
   FocusNode? txtduracionFocusNode;
   TextEditingController? txtduracionTextController;
   String? Function(BuildContext, String?)? txtduracionTextControllerValidator;
+  // State field(s) for txtPrecio widget.
+  FocusNode? txtPrecioFocusNode;
+  TextEditingController? txtPrecioTextController;
+  String? Function(BuildContext, String?)? txtPrecioTextControllerValidator;
+  bool isDataUploading_uploadData = false;
+  FFUploadedFile uploadedLocalFile_uploadData =
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
+  String uploadedFileUrl_uploadData = '';
+
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
+    txtBuscadorFocusNode?.dispose();
+    txtBuscadorTextController?.dispose();
+
     tabBarController?.dispose();
     txtnombreFocusNode?.dispose();
     txtnombreTextController?.dispose();
@@ -43,10 +57,10 @@ class ServiciosModel extends FlutterFlowModel<ServiciosWidget> {
     txtdescripcionFocusNode?.dispose();
     txtdescripcionTextController?.dispose();
 
-    txtprecioFocusNode?.dispose();
-    txtprecioTextController?.dispose();
-
     txtduracionFocusNode?.dispose();
     txtduracionTextController?.dispose();
+
+    txtPrecioFocusNode?.dispose();
+    txtPrecioTextController?.dispose();
   }
 }

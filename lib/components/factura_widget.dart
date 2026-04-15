@@ -41,7 +41,7 @@ class _FacturaWidgetState extends State<FacturaWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.transparent,
+        color: FlutterFlowTheme.of(context).alternate,
       ),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
@@ -69,8 +69,6 @@ class _FacturaWidgetState extends State<FacturaWidget> {
               decoration: BoxDecoration(
                 color: Color(0xFF1A1A1A),
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0.0),
-                  bottomRight: Radius.circular(0.0),
                   topLeft: Radius.circular(8.0),
                   topRight: Radius.circular(8.0),
                 ),
@@ -107,12 +105,7 @@ class _FacturaWidgetState extends State<FacturaWidget> {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0.0),
-                  bottomRight: Radius.circular(0.0),
-                  topLeft: Radius.circular(0.0),
-                  topRight: Radius.circular(0.0),
-                ),
+                borderRadius: BorderRadius.only(),
                 border: Border.all(
                   color: Color(0xFF1A1A1A),
                   width: 1.0,
@@ -464,8 +457,6 @@ class _FacturaWidgetState extends State<FacturaWidget> {
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(8.0),
                   bottomRight: Radius.circular(8.0),
-                  topLeft: Radius.circular(0.0),
-                  topRight: Radius.circular(0.0),
                 ),
               ),
               child: Padding(

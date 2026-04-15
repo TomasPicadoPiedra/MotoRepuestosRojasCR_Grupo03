@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'iniciar_sesion_model.dart';
 export 'iniciar_sesion_model.dart';
 
@@ -46,6 +48,8 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -93,10 +97,10 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                       decoration: BoxDecoration(
                         color: Color(0xFF6B0000),
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10.0),
-                          bottomRight: Radius.circular(10.0),
                           topLeft: Radius.circular(10.0),
                           topRight: Radius.circular(10.0),
+                          bottomLeft: Radius.circular(10.0),
+                          bottomRight: Radius.circular(10.0),
                         ),
                       ),
                       child: Padding(
@@ -449,8 +453,19 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                           return;
                         }
 
-                        context.goNamedAuth(
-                            PaginaPrincipalWidget.routeName, context.mounted);
+                        _model.userDocument = await UsersRecord.getDocumentOnce(
+                            currentUserReference!);
+                        FFAppState().rol = _model.userDocument!.rol;
+                        safeSetState(() {});
+                        if (FFAppState().rol == 'Administrador') {
+                          context.pushNamedAuth(
+                              InicioValidRolWidget.routeName, context.mounted);
+                        } else {
+                          context.pushNamedAuth(
+                              InicioValidRolWidget.routeName, context.mounted);
+                        }
+
+                        safeSetState(() {});
                       },
                       text: 'Iniciar Sesion',
                       options: FFButtonOptions(
@@ -460,7 +475,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFFD9D9D9),
+                        color: Color(0xFF6B0000),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.interTight(
@@ -482,7 +497,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(
-                          width: 15.0,
+                          width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -518,7 +533,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                               16.0, 0.0, 16.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFFD9D9D9),
+                          color: Color(0xFF6B0000),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     font: GoogleFonts.interTight(
@@ -540,7 +555,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                   ),
                           elevation: 0.0,
                           borderSide: BorderSide(
-                            width: 15.0,
+                            width: 0.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),

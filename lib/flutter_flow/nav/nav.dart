@@ -76,14 +76,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? PaginaPrincipalWidget()
+          ? InicioValidRolWidget()
           : IniciarSesionWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? PaginaPrincipalWidget()
+              ? InicioValidRolWidget()
               : IniciarSesionWidget(),
         ),
         FFRoute(
@@ -135,6 +135,55 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ServiciosWidget.routeName,
           path: ServiciosWidget.routePath,
           builder: (context, params) => ServiciosWidget(),
+        ),
+        FFRoute(
+          name: DetalleProductoWidget.routeName,
+          path: DetalleProductoWidget.routePath,
+          builder: (context, params) => DetalleProductoWidget(
+            productoRef: params.getParam(
+              'productoRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['Inventario'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: DetalleServicioWidget.routeName,
+          path: DetalleServicioWidget.routePath,
+          builder: (context, params) => DetalleServicioWidget(
+            servicioReferencia: params.getParam(
+              'servicioReferencia',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['Servicios'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: VerCitasWidget.routeName,
+          path: VerCitasWidget.routePath,
+          builder: (context, params) => VerCitasWidget(),
+        ),
+        FFRoute(
+          name: InicioValidRolWidget.routeName,
+          path: InicioValidRolWidget.routePath,
+          builder: (context, params) => InicioValidRolWidget(),
+        ),
+        FFRoute(
+          name: ContabilidadWidget.routeName,
+          path: ContabilidadWidget.routePath,
+          builder: (context, params) => ContabilidadWidget(),
+        ),
+        FFRoute(
+          name: CatalogoWidget.routeName,
+          path: CatalogoWidget.routePath,
+          builder: (context, params) => CatalogoWidget(),
+        ),
+        FFRoute(
+          name: AgregarCitasWidget.routeName,
+          path: AgregarCitasWidget.routePath,
+          builder: (context, params) => AgregarCitasWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

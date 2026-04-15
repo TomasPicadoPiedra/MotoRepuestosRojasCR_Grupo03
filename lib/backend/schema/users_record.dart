@@ -55,6 +55,16 @@ class UsersRecord extends FirestoreRecord {
   String get apellidoMaterno => _apellidoMaterno ?? '';
   bool hasApellidoMaterno() => _apellidoMaterno != null;
 
+  // "Rol" field.
+  String? _rol;
+  String get rol => _rol ?? '';
+  bool hasRol() => _rol != null;
+
+  // "token" field.
+  int? _token;
+  int get token => _token ?? 0;
+  bool hasToken() => _token != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -64,6 +74,8 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _apellidoPaterno = snapshotData['apellido_paterno'] as String?;
     _apellidoMaterno = snapshotData['apellido_materno'] as String?;
+    _rol = snapshotData['Rol'] as String?;
+    _token = castToType<int>(snapshotData['token']);
   }
 
   static CollectionReference get collection =>
@@ -108,6 +120,8 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   String? apellidoPaterno,
   String? apellidoMaterno,
+  String? rol,
+  int? token,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +133,8 @@ Map<String, dynamic> createUsersRecordData({
       'phone_number': phoneNumber,
       'apellido_paterno': apellidoPaterno,
       'apellido_materno': apellidoMaterno,
+      'Rol': rol,
+      'token': token,
     }.withoutNulls,
   );
 
@@ -137,7 +153,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.apellidoPaterno == e2?.apellidoPaterno &&
-        e1?.apellidoMaterno == e2?.apellidoMaterno;
+        e1?.apellidoMaterno == e2?.apellidoMaterno &&
+        e1?.rol == e2?.rol &&
+        e1?.token == e2?.token;
   }
 
   @override
@@ -149,7 +167,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.apellidoPaterno,
-        e?.apellidoMaterno
+        e?.apellidoMaterno,
+        e?.rol,
+        e?.token
       ]);
 
   @override

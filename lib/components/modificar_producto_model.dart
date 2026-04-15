@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'modificar_producto_widget.dart' show ModificarProductoWidget;
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,9 @@ class ModificarProductoModel extends FlutterFlowModel<ModificarProductoWidget> {
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController4;
@@ -29,6 +33,10 @@ class ModificarProductoModel extends FlutterFlowModel<ModificarProductoWidget> {
   FocusNode? textFieldFocusNode6;
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
+  bool isDataUploading_uploadDataSpe = false;
+  FFUploadedFile uploadedLocalFile_uploadDataSpe =
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
+  String uploadedFileUrl_uploadDataSpe = '';
 
   @override
   void initState(BuildContext context) {}

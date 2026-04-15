@@ -40,6 +40,10 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
   FocusNode? txtNumeroFocusNode;
   TextEditingController? txtNumeroTextController;
   String? Function(BuildContext, String?)? txtNumeroTextControllerValidator;
+  // State field(s) for txtToken widget.
+  FocusNode? txtTokenFocusNode;
+  TextEditingController? txtTokenTextController;
+  String? Function(BuildContext, String?)? txtTokenTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -69,5 +73,8 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
 
     txtNumeroFocusNode?.dispose();
     txtNumeroTextController?.dispose();
+
+    txtTokenFocusNode?.dispose();
+    txtTokenTextController?.dispose();
   }
 }

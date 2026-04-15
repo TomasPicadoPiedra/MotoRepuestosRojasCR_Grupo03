@@ -25,21 +25,33 @@ class ServiciosRecord extends FirestoreRecord {
   double get precio => _precio ?? 0.0;
   bool hasPrecio() => _precio != null;
 
-  // "Duracion" field.
-  int? _duracion;
-  int get duracion => _duracion ?? 0;
-  bool hasDuracion() => _duracion != null;
-
   // "Descripcion" field.
   String? _descripcion;
   String get descripcion => _descripcion ?? '';
   bool hasDescripcion() => _descripcion != null;
 
+  // "requiere_repuestos" field.
+  bool? _requiereRepuestos;
+  bool get requiereRepuestos => _requiereRepuestos ?? false;
+  bool hasRequiereRepuestos() => _requiereRepuestos != null;
+
+  // "imagen" field.
+  String? _imagen;
+  String get imagen => _imagen ?? '';
+  bool hasImagen() => _imagen != null;
+
+  // "Duracion" field.
+  String? _duracion;
+  String get duracion => _duracion ?? '';
+  bool hasDuracion() => _duracion != null;
+
   void _initializeFields() {
     _nombreS = snapshotData['NombreS'] as String?;
     _precio = castToType<double>(snapshotData['Precio']);
-    _duracion = castToType<int>(snapshotData['Duracion']);
     _descripcion = snapshotData['Descripcion'] as String?;
+    _requiereRepuestos = snapshotData['requiere_repuestos'] as bool?;
+    _imagen = snapshotData['imagen'] as String?;
+    _duracion = snapshotData['Duracion'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -79,15 +91,19 @@ class ServiciosRecord extends FirestoreRecord {
 Map<String, dynamic> createServiciosRecordData({
   String? nombreS,
   double? precio,
-  int? duracion,
   String? descripcion,
+  bool? requiereRepuestos,
+  String? imagen,
+  String? duracion,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'NombreS': nombreS,
       'Precio': precio,
-      'Duracion': duracion,
       'Descripcion': descripcion,
+      'requiere_repuestos': requiereRepuestos,
+      'imagen': imagen,
+      'Duracion': duracion,
     }.withoutNulls,
   );
 
@@ -101,13 +117,21 @@ class ServiciosRecordDocumentEquality implements Equality<ServiciosRecord> {
   bool equals(ServiciosRecord? e1, ServiciosRecord? e2) {
     return e1?.nombreS == e2?.nombreS &&
         e1?.precio == e2?.precio &&
-        e1?.duracion == e2?.duracion &&
-        e1?.descripcion == e2?.descripcion;
+        e1?.descripcion == e2?.descripcion &&
+        e1?.requiereRepuestos == e2?.requiereRepuestos &&
+        e1?.imagen == e2?.imagen &&
+        e1?.duracion == e2?.duracion;
   }
 
   @override
-  int hash(ServiciosRecord? e) => const ListEquality()
-      .hash([e?.nombreS, e?.precio, e?.duracion, e?.descripcion]);
+  int hash(ServiciosRecord? e) => const ListEquality().hash([
+        e?.nombreS,
+        e?.precio,
+        e?.descripcion,
+        e?.requiereRepuestos,
+        e?.imagen,
+        e?.duracion
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ServiciosRecord;

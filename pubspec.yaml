@@ -35,9 +35,13 @@ dependencies:
   cloud_firestore_platform_interface: 6.6.9
   cloud_firestore_web: 4.4.9
   collection: 1.19.1
-  cross_file: 0.3.4+2
+  cross_file: 0.3.5+1
   csslib: 1.0.2
-  dropdown_button2: 2.3.9
+  dropdown_button2: 
+    git:
+      url: https://github.com/FlutterFlow/dropdown_button2.git
+      ref: 9bbeb2fd68e12615251a67208eb21bc75628c02c
+      path: packages/dropdown_button2
   easy_debounce: 2.0.1
   file_picker: 10.1.9
   firebase_auth: 5.6.0
@@ -97,9 +101,11 @@ dependencies:
   sign_in_with_apple: 7.0.1
   sign_in_with_apple_platform_interface: 2.0.0
   sign_in_with_apple_web: 3.0.0
+  smooth_page_indicator: 1.1.0
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
+  text_search: 1.0.1
   timeago: 3.7.1
   url_launcher: 6.3.1
   url_launcher_android: 6.3.16

@@ -30,16 +30,6 @@ class InventarioRecord extends FirestoreRecord {
   String get marca => _marca ?? '';
   bool hasMarca() => _marca != null;
 
-  // "stockActual" field.
-  int? _stockActual;
-  int get stockActual => _stockActual ?? 0;
-  bool hasStockActual() => _stockActual != null;
-
-  // "stockMin" field.
-  int? _stockMin;
-  int get stockMin => _stockMin ?? 0;
-  bool hasStockMin() => _stockMin != null;
-
   // "precioCompra" field.
   double? _precioCompra;
   double get precioCompra => _precioCompra ?? 0.0;
@@ -65,17 +55,27 @@ class InventarioRecord extends FirestoreRecord {
   double get precioVenta => _precioVenta ?? 0.0;
   bool hasPrecioVenta() => _precioVenta != null;
 
+  // "categoria" field.
+  String? _categoria;
+  String get categoria => _categoria ?? '';
+  bool hasCategoria() => _categoria != null;
+
+  // "busqueda_general" field.
+  String? _busquedaGeneral;
+  String get busquedaGeneral => _busquedaGeneral ?? '';
+  bool hasBusquedaGeneral() => _busquedaGeneral != null;
+
   void _initializeFields() {
     _nombreP = snapshotData['NombreP'] as String?;
     _codigo = snapshotData['Codigo'] as String?;
     _marca = snapshotData['Marca'] as String?;
-    _stockActual = castToType<int>(snapshotData['stockActual']);
-    _stockMin = castToType<int>(snapshotData['stockMin']);
     _precioCompra = castToType<double>(snapshotData['precioCompra']);
     _imagen = snapshotData['imagen'] as String?;
     _porcentaje = castToType<double>(snapshotData['porcentaje']);
     _cantidad = castToType<int>(snapshotData['cantidad']);
     _precioVenta = castToType<double>(snapshotData['precioVenta']);
+    _categoria = snapshotData['categoria'] as String?;
+    _busquedaGeneral = snapshotData['busqueda_general'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -116,26 +116,26 @@ Map<String, dynamic> createInventarioRecordData({
   String? nombreP,
   String? codigo,
   String? marca,
-  int? stockActual,
-  int? stockMin,
   double? precioCompra,
   String? imagen,
   double? porcentaje,
   int? cantidad,
   double? precioVenta,
+  String? categoria,
+  String? busquedaGeneral,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'NombreP': nombreP,
       'Codigo': codigo,
       'Marca': marca,
-      'stockActual': stockActual,
-      'stockMin': stockMin,
       'precioCompra': precioCompra,
       'imagen': imagen,
       'porcentaje': porcentaje,
       'cantidad': cantidad,
       'precioVenta': precioVenta,
+      'categoria': categoria,
+      'busqueda_general': busquedaGeneral,
     }.withoutNulls,
   );
 
@@ -150,13 +150,13 @@ class InventarioRecordDocumentEquality implements Equality<InventarioRecord> {
     return e1?.nombreP == e2?.nombreP &&
         e1?.codigo == e2?.codigo &&
         e1?.marca == e2?.marca &&
-        e1?.stockActual == e2?.stockActual &&
-        e1?.stockMin == e2?.stockMin &&
         e1?.precioCompra == e2?.precioCompra &&
         e1?.imagen == e2?.imagen &&
         e1?.porcentaje == e2?.porcentaje &&
         e1?.cantidad == e2?.cantidad &&
-        e1?.precioVenta == e2?.precioVenta;
+        e1?.precioVenta == e2?.precioVenta &&
+        e1?.categoria == e2?.categoria &&
+        e1?.busquedaGeneral == e2?.busquedaGeneral;
   }
 
   @override
@@ -164,13 +164,13 @@ class InventarioRecordDocumentEquality implements Equality<InventarioRecord> {
         e?.nombreP,
         e?.codigo,
         e?.marca,
-        e?.stockActual,
-        e?.stockMin,
         e?.precioCompra,
         e?.imagen,
         e?.porcentaje,
         e?.cantidad,
-        e?.precioVenta
+        e?.precioVenta,
+        e?.categoria,
+        e?.busquedaGeneral
       ]);
 
   @override

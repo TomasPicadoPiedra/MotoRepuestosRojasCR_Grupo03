@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 class InventarioModel extends FlutterFlowModel<InventarioWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for txtBuscador widget.
+  FocusNode? txtBuscadorFocusNode;
+  TextEditingController? txtBuscadorTextController;
+  String? Function(BuildContext, String?)? txtBuscadorTextControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -29,6 +30,9 @@ class InventarioModel extends FlutterFlowModel<InventarioWidget> {
   FocusNode? txtmarcaFocusNode;
   TextEditingController? txtmarcaTextController;
   String? Function(BuildContext, String?)? txtmarcaTextControllerValidator;
+  // State field(s) for DropCategoria widget.
+  String? dropCategoriaValue;
+  FormFieldController<String>? dropCategoriaValueController;
   // State field(s) for txtprecioc widget.
   FocusNode? txtpreciocFocusNode;
   TextEditingController? txtpreciocTextController;
@@ -41,16 +45,19 @@ class InventarioModel extends FlutterFlowModel<InventarioWidget> {
   FocusNode? txtcantidadFocusNode;
   TextEditingController? txtcantidadTextController;
   String? Function(BuildContext, String?)? txtcantidadTextControllerValidator;
-  bool isDataUploading_uploadDataA2w = false;
-  FFUploadedFile uploadedLocalFile_uploadDataA2w =
+  bool isDataUploading_uploadDataZi0 = false;
+  FFUploadedFile uploadedLocalFile_uploadDataZi0 =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-  String uploadedFileUrl_uploadDataA2w = '';
+  String uploadedFileUrl_uploadDataZi0 = '';
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
+    txtBuscadorFocusNode?.dispose();
+    txtBuscadorTextController?.dispose();
+
     tabBarController?.dispose();
     txtnombreFocusNode?.dispose();
     txtnombreTextController?.dispose();

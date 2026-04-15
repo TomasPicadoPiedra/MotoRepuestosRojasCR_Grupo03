@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'pagina_principal_model.dart';
 export 'pagina_principal_model.dart';
 
@@ -40,6 +41,8 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -119,250 +122,294 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(InventarioWidget.routeName);
-                          },
-                          text: 'Inventario',
-                          icon: Icon(
-                            Icons.move_to_inbox_sharp,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 350.0,
-                            height: 100.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.black,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'WorkSans',
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              letterSpacing: 0.0,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0xFFC60000),
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 4.0,
-                                )
-                              ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(InventarioWidget.routeName);
+                            },
+                            text: 'Inventario',
+                            icon: Icon(
+                              Icons.move_to_inbox_sharp,
+                              size: 50.0,
                             ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 100.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.black,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                fontFamily: 'WorkSans',
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                letterSpacing: 0.0,
+                                shadows: [
+                                  Shadow(
+                                    color: Color(0xFFC60000),
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 4.0,
+                                  )
+                                ],
+                              ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(CitasWidget.routeName);
-                          },
-                          text: 'Citas',
-                          icon: Icon(
-                            Icons.calendar_month,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 350.0,
-                            height: 100.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.black,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'WorkSans',
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              letterSpacing: 0.0,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0xFFC60000),
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 4.0,
-                                )
-                              ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(CitasWidget.routeName);
+                            },
+                            text: 'Citas',
+                            icon: Icon(
+                              Icons.calendar_month,
+                              size: 50.0,
                             ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 100.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.black,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                fontFamily: 'WorkSans',
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                letterSpacing: 0.0,
+                                shadows: [
+                                  Shadow(
+                                    color: Color(0xFFC60000),
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 4.0,
+                                  )
+                                ],
+                              ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(UsuarioWidget.routeName);
-                          },
-                          text: 'Usuarios',
-                          icon: Icon(
-                            Icons.person_search,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 350.0,
-                            height: 100.0,
+                        if (FFAppState().rol == 'Administrador')
+                          Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.black,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'WorkSans',
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              letterSpacing: 0.0,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0xFFC60000),
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 4.0,
-                                )
-                              ],
+                                0.0, 5.0, 0.0, 5.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(UsuarioWidget.routeName);
+                              },
+                              text: 'Usuarios',
+                              icon: Icon(
+                                Icons.person_search,
+                                size: 50.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: 350.0,
+                                height: 100.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                  fontFamily: 'WorkSans',
+                                  color: Colors.white,
+                                  fontSize: 30.0,
+                                  letterSpacing: 0.0,
+                                  shadows: [
+                                    Shadow(
+                                      color: Color(0xFFC60000),
+                                      offset: Offset(2.0, 2.0),
+                                      blurRadius: 4.0,
+                                    )
+                                  ],
+                                ),
+                                elevation: 0.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(ReportesWidget.routeName);
+                            },
+                            text: 'Reportes',
+                            icon: Icon(
+                              Icons.document_scanner_sharp,
+                              size: 50.0,
+                            ),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 100.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.black,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                fontFamily: 'WorkSans',
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                letterSpacing: 0.0,
+                                shadows: [
+                                  Shadow(
+                                    color: Color(0xFFC60000),
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 4.0,
+                                  )
+                                ],
+                              ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(ReportesWidget.routeName);
-                          },
-                          text: 'Reportes',
-                          icon: Icon(
-                            Icons.document_scanner_sharp,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 350.0,
-                            height: 100.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.black,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'WorkSans',
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              letterSpacing: 0.0,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0xFFC60000),
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 4.0,
-                                )
-                              ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(VentasWidget.routeName);
+                            },
+                            text: 'Punto de Venta',
+                            icon: Icon(
+                              Icons.attach_money,
+                              size: 50.0,
                             ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 100.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.black,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                fontFamily: 'WorkSans',
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                letterSpacing: 0.0,
+                                shadows: [
+                                  Shadow(
+                                    color: Color(0xFFC60000),
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 4.0,
+                                  )
+                                ],
+                              ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(VentasWidget.routeName);
-                          },
-                          text: 'Punto de Venta',
-                          icon: Icon(
-                            Icons.attach_money,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 350.0,
-                            height: 100.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.black,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'WorkSans',
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              letterSpacing: 0.0,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0xFFC60000),
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 4.0,
-                                )
-                              ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(ServiciosWidget.routeName);
+                            },
+                            text: 'Servicios',
+                            icon: Icon(
+                              Icons.room_service,
+                              size: 50.0,
                             ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 100.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.black,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                fontFamily: 'WorkSans',
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                letterSpacing: 0.0,
+                                shadows: [
+                                  Shadow(
+                                    color: Color(0xFFC60000),
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 4.0,
+                                  )
+                                ],
+                              ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(ServiciosWidget.routeName);
-                          },
-                          text: 'Servicios',
-                          icon: Icon(
-                            Icons.room_service,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 350.0,
-                            height: 100.0,
+                        if (FFAppState().rol == 'Administrador')
+                          Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.black,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'WorkSans',
-                              color: Colors.white,
-                              fontSize: 30.0,
-                              letterSpacing: 0.0,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0xFFC60000),
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 4.0,
-                                )
-                              ],
+                                0.0, 5.0, 0.0, 5.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(CatalogoWidget.routeName);
+                              },
+                              text: 'Catalago',
+                              icon: Icon(
+                                Icons.account_balance,
+                                size: 50.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: 350.0,
+                                height: 100.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                  fontFamily: 'WorkSans',
+                                  color: Colors.white,
+                                  fontSize: 30.0,
+                                  letterSpacing: 0.0,
+                                  shadows: [
+                                    Shadow(
+                                      color: Color(0xFFC60000),
+                                      offset: Offset(2.0, 2.0),
+                                      blurRadius: 4.0,
+                                    )
+                                  ],
+                                ),
+                                elevation: 0.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
