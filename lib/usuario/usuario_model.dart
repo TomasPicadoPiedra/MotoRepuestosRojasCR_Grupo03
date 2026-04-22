@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'usuario_widget.dart' show UsuarioWidget;
@@ -10,6 +11,7 @@ class UsuarioModel extends FlutterFlowModel<UsuarioWidget> {
   FocusNode? txtBuscadorFocusNode;
   TextEditingController? txtBuscadorTextController;
   String? Function(BuildContext, String?)? txtBuscadorTextControllerValidator;
+  List<UsersRecord> simpleSearchResults = [];
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>

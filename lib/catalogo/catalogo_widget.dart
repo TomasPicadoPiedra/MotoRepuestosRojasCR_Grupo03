@@ -337,9 +337,9 @@ class _CatalogoWidgetState extends State<CatalogoWidget> {
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed(VentasWidget.routeName);
+                            context.pushNamed(VentasPWidget.routeName);
                           },
-                          text: '     Carrito    ',
+                          text: '   comprar ',
                           icon: Icon(
                             Icons.shopping_cart,
                             size: 20.0,

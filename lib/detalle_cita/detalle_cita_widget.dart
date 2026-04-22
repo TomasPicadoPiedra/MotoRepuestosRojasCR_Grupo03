@@ -1,44 +1,43 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'agregar_citas_model.dart';
-export 'agregar_citas_model.dart';
+import 'detalle_cita_model.dart';
+export 'detalle_cita_model.dart';
 
-class AgregarCitasWidget extends StatefulWidget {
-  const AgregarCitasWidget({super.key});
+class DetalleCitaWidget extends StatefulWidget {
+  const DetalleCitaWidget({
+    super.key,
+    required this.citaRef,
+  });
 
-  static String routeName = 'AgregarCitas';
-  static String routePath = '/AgregarCitas';
+  final DocumentReference? citaRef;
+
+  static String routeName = 'DetalleCita';
+  static String routePath = '/detalleCita';
 
   @override
-  State<AgregarCitasWidget> createState() => _AgregarCitasWidgetState();
+  State<DetalleCitaWidget> createState() => _DetalleCitaWidgetState();
 }
 
-class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
-  late AgregarCitasModel _model;
+class _DetalleCitaWidgetState extends State<DetalleCitaWidget> {
+  late DetalleCitaModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AgregarCitasModel());
+    _model = createModel(context, () => DetalleCitaModel());
 
-    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -53,13 +52,13 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<ServiciosRecord>>(
-      stream: queryServiciosRecord(),
+    return StreamBuilder<CitasRecord>(
+      stream: CitasRecord.getDocument(widget.citaRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
                 width: 50.0,
@@ -73,7 +72,8 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
             ),
           );
         }
-        List<ServiciosRecord> agregarCitasServiciosRecordList = snapshot.data!;
+
+        final detalleCitaCitasRecord = snapshot.data!;
 
         return GestureDetector(
           onTap: () {
@@ -82,7 +82,7 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
           },
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: Colors.white,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
               backgroundColor: Color(0xFF6B0000),
               automaticallyImplyLeading: false,
@@ -100,84 +100,28 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                   size: 24.0,
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 75.0, 0.0),
-                        child: Text(
-                          'Citas',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                        ),
+              title: Text(
+                'Información de Cita',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      font: GoogleFonts.interTight(
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .fontStyle,
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => Text(
-                            currentUserDisplayName,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                                  color: Colors.white,
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(VerPerfilWidget.routeName);
-                        },
-                        child: Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 40.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FlutterFlowTheme.of(context)
+                          .headlineMedium
+                          .fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                    ),
+              ),
+              actions: [],
               centerTitle: false,
               elevation: 2.0,
             ),
@@ -186,30 +130,6 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(25.0, 20.0, 0.0, 0.0),
-                      child: Text(
-                        'Agendar Cita',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              fontSize: 25.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                    ),
-                  ),
                   Container(
                     width: 400.0,
                     height: 660.0,
@@ -218,22 +138,53 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    25.0, 20.0, 0.0, 20.0),
+                                child: Text(
+                                  'Detalles de la Cita',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 25.0, 0.0, 0.0),
                               child: Container(
                                 width: 275.0,
                                 child: TextFormField(
-                                  controller: _model.textController1,
+                                  controller: _model.textController1 ??=
+                                      TextEditingController(
+                                    text: detalleCitaCitasRecord.motivo,
+                                  ),
                                   focusNode: _model.textFieldFocusNode1,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -358,10 +309,14 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                               child: Container(
                                 width: 275.0,
                                 child: TextFormField(
-                                  controller: _model.textController2,
+                                  controller: _model.textController2 ??=
+                                      TextEditingController(
+                                    text: detalleCitaCitasRecord.placa,
+                                  ),
                                   focusNode: _model.textFieldFocusNode2,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -482,10 +437,14 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                               child: Container(
                                 width: 275.0,
                                 child: TextFormField(
-                                  controller: _model.textController3,
+                                  controller: _model.textController3 ??=
+                                      TextEditingController(
+                                    text: detalleCitaCitasRecord.modeloMoto,
+                                  ),
                                   focusNode: _model.textFieldFocusNode3,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -606,9 +565,7 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 25.0, 0.0, 0.0),
                                 child: FlutterFlowChoiceChips(
-                                  options: agregarCitasServiciosRecordList
-                                      .map((e) => e.nombreS)
-                                      .toList()
+                                  options: detalleCitaCitasRecord.servicios
                                       .map((label) => ChipData(label))
                                       .toList(),
                                   onChanged: (val) => safeSetState(
@@ -689,7 +646,7 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                                   controller:
                                       _model.choiceChipsValueController ??=
                                           FormFieldController<List<String>>(
-                                    ['', ''],
+                                    detalleCitaCitasRecord.servicios,
                                   ),
                                   wrapped: true,
                                 ),
@@ -699,7 +656,30 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 25.0, 0.0, 0.0),
                               child: Text(
-                                dateTimeFormat("d/M/y", _model.datePicked),
+                                'Fecha de la cita:',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 25.0, 0.0, 0.0),
+                              child: Text(
+                                dateTimeFormat(
+                                    "d/M/y", detalleCitaCitasRecord.fechaHora!),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -723,341 +703,67 @@ class _AgregarCitasWidgetState extends State<AgregarCitasWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  final _datePickedDate = await showDatePicker(
-                                    context: context,
-                                    initialDate: getCurrentTimestamp,
-                                    firstDate: getCurrentTimestamp,
-                                    lastDate: DateTime(2050),
-                                    builder: (context, child) {
-                                      return wrapInMaterialDatePickerTheme(
-                                        context,
-                                        child!,
-                                        headerBackgroundColor:
-                                            Color(0xFF6B0000),
-                                        headerForegroundColor:
-                                            FlutterFlowTheme.of(context).info,
-                                        headerTextStyle: FlutterFlowTheme.of(
-                                                context)
-                                            .headlineLarge
-                                            .override(
-                                              font: GoogleFonts.interTight(
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
-                                                        .fontStyle,
-                                              ),
-                                              fontSize: 32.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineLarge
-                                                      .fontStyle,
-                                            ),
-                                        pickerBackgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        pickerForegroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                        selectedDateTimeBackgroundColor:
-                                            Color(0xFF6B0000),
-                                        selectedDateTimeForegroundColor:
-                                            FlutterFlowTheme.of(context).info,
-                                        actionButtonForegroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                        iconSize: 24.0,
-                                      );
-                                    },
-                                  );
-
-                                  TimeOfDay? _datePickedTime;
-                                  if (_datePickedDate != null) {
-                                    _datePickedTime = await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.fromDateTime(
-                                          getCurrentTimestamp),
-                                      builder: (context, child) {
-                                        return wrapInMaterialTimePickerTheme(
-                                          context,
-                                          child!,
-                                          headerBackgroundColor:
-                                              Color(0xFF6B0000),
-                                          headerForegroundColor:
-                                              FlutterFlowTheme.of(context).info,
-                                          headerTextStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .headlineLarge
-                                              .override(
-                                                font: GoogleFonts.interTight(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .fontStyle,
-                                                ),
-                                                fontSize: 32.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
-                                                        .fontStyle,
-                                              ),
-                                          pickerBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          pickerForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          selectedDateTimeBackgroundColor:
-                                              Color(0xFF6B0000),
-                                          selectedDateTimeForegroundColor:
-                                              FlutterFlowTheme.of(context).info,
-                                          actionButtonForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          iconSize: 24.0,
-                                        );
-                                      },
-                                    );
-                                  }
-
-                                  if (_datePickedDate != null &&
-                                      _datePickedTime != null) {
-                                    safeSetState(() {
-                                      _model.datePicked = DateTime(
-                                        _datePickedDate.year,
-                                        _datePickedDate.month,
-                                        _datePickedDate.day,
-                                        _datePickedTime!.hour,
-                                        _datePickedTime.minute,
-                                      );
-                                    });
-                                  } else if (_model.datePicked != null) {
-                                    safeSetState(() {
-                                      _model.datePicked = getCurrentTimestamp;
-                                    });
-                                  }
-                                  if (functions
-                                          .validarHorario(_model.datePicked) ==
-                                      true) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Horario no disponible. Atendemos de L a V de 8am a 5pm, S Cerrado, D 9am-6pm',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: Duration(milliseconds: 4000),
-                                        backgroundColor: Color(0xFFC60000),
-                                      ),
-                                    );
-                                  } else {
-                                    await CitasRecord.collection.doc().set({
-                                      ...createCitasRecordData(
-                                        cliente: currentUserReference,
-                                        fechaHora: _model.datePicked,
-                                        motivo: _model.textController1.text,
-                                        modeloMoto: _model.textController3.text,
-                                        placa: _model.textController2.text,
-                                        estado: 'Pendiente',
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'Servicios': _model.choiceChipsValues,
-                                        },
-                                      ),
-                                    });
-                                  }
-                                },
-                                text: 'Fecha y Hora',
-                                icon: Icon(
-                                  Icons.calendar_month,
-                                  size: 15.0,
-                                ),
-                                options: FFButtonOptions(
-                                  width: MediaQuery.sizeOf(context).width * 0.4,
-                                  height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFF474F58),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        font: GoogleFonts.interTight(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontStyle,
-                                        ),
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                  elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 25.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (functions
-                                      .validarHorario(_model.datePicked)!) {
-                                    _model.citaExistente =
-                                        await queryCitasRecordOnce(
-                                      queryBuilder: (citasRecord) =>
-                                          citasRecord.where(
-                                        'FechaHora',
-                                        isEqualTo: _model.datePicked,
-                                      ),
-                                    );
-                                    if (_model.citaExistente?.length == 0) {
-                                      await CitasRecord.collection.doc().set({
-                                        ...createCitasRecordData(
-                                          motivo: _model.textController1.text,
-                                          placa: _model.textController2.text,
-                                          modeloMoto:
-                                              _model.textController3.text,
-                                          fechaHora: _model.datePicked,
-                                          cliente: currentUserReference,
-                                          estado: 'Pendiente',
-                                        ),
-                                        ...mapToFirestore(
-                                          {
-                                            'Servicios':
-                                                _model.choiceChipsValues,
-                                          },
-                                        ),
-                                      });
-                                      safeSetState(() {
-                                        _model.textController1?.clear();
-                                        _model.textController2?.clear();
-                                        _model.textController3?.clear();
-                                      });
-                                      safeSetState(() {
-                                        _model.choiceChipsValueController
-                                            ?.reset();
-                                      });
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('¡Cita Registrada!'),
-                                            content: Text(
-                                                'La cita para la placa ${_model.textController2.text}se ha registrado con éxito.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Entendido'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                      context.safePop();
-                                    } else {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('Horario Ocupado'),
-                                            content: Text(
-                                                'a hay una moto agendada a esta hora. Por favor, elegí otra'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }
-                                  } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Horario Cerrado'),
-                                          content: Text(
-                                              'Elegí un horario válido. MotoRepuestos Rojas abre de L-V de 8am a 6pm, y Domingos de 9am a 6pm.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-
-                                  safeSetState(() {});
-                                },
-                                text: 'Agregar Cita',
-                                icon: Icon(
-                                  Icons.add,
-                                  size: 15.0,
+                              child: FlutterFlowDropDown<String>(
+                                controller: _model.dropDownValueController ??=
+                                    FormFieldController<String>(
+                                  _model.dropDownValue ??=
+                                      detalleCitaCitasRecord.estado,
                                 ),
-                                options: FFButtonOptions(
-                                  width: MediaQuery.sizeOf(context).width * 0.4,
-                                  height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFF6B0000),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        font: GoogleFonts.interTight(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontStyle,
-                                        ),
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
+                                options: [
+                                  'Pendiente',
+                                  'En Proceso',
+                                  'Terminado'
+                                ],
+                                onChanged: (val) async {
+                                  safeSetState(
+                                      () => _model.dropDownValue = val);
+                                  await widget.citaRef!
+                                      .update(createCitasRecordData(
+                                    estado: _model.dropDownValue,
+                                  ));
+                                },
+                                width: 275.0,
+                                height: 40.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.inter(
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .titleSmall
+                                            .bodyMedium
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
+                                            .bodyMedium
                                             .fontStyle,
                                       ),
-                                  elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(8.0),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                hintText: 'Select...',
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
                                 ),
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 2.0,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0.0,
+                                borderRadius: 8.0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 0.0),
+                                hidesUnderline: true,
+                                disabled: true,
+                                isOverButton: false,
+                                isSearchable: false,
+                                isMultiSelect: false,
                               ),
                             ),
                           ],

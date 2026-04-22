@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/solicitar_contrasenna_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -83,6 +84,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'WorkSans',
                       letterSpacing: 0.0,
+                      fontWeight: FontWeight.bold,
                     ),
               ),
               Padding(
@@ -505,12 +507,50 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                   ],
                 ),
               ),
-              Text(
-                '-¿No tienes una cuenta? Tambien puedes registarte aquí-',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'WorkSans',
-                      letterSpacing: 0.0,
-                    ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    enableDrag: false,
+                    context: context,
+                    builder: (context) {
+                      return GestureDetector(
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        child: Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: SolicitarContrasennaWidget(),
+                        ),
+                      );
+                    },
+                  ).then((value) => safeSetState(() {}));
+                },
+                child: Text(
+                  '-¿Olvidaste tu contraseña?-',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'WorkSans',
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: Text(
+                  '-¿No tienes una cuenta? Tambien puedes registarte aquí-',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'WorkSans',
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 15.0),

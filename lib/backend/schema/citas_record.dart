@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -46,8 +47,8 @@ class CitasRecord extends FirestoreRecord {
   bool hasEstado() => _estado != null;
 
   // "Servicios" field.
-  DocumentReference? _servicios;
-  DocumentReference? get servicios => _servicios;
+  List<String>? _servicios;
+  List<String> get servicios => _servicios ?? const [];
   bool hasServicios() => _servicios != null;
 
   void _initializeFields() {
@@ -57,7 +58,7 @@ class CitasRecord extends FirestoreRecord {
     _modeloMoto = snapshotData['modeloMoto'] as String?;
     _placa = snapshotData['Placa'] as String?;
     _estado = snapshotData['Estado'] as String?;
-    _servicios = snapshotData['Servicios'] as DocumentReference?;
+    _servicios = getDataList(snapshotData['Servicios']);
   }
 
   static CollectionReference get collection =>
@@ -100,7 +101,6 @@ Map<String, dynamic> createCitasRecordData({
   String? modeloMoto,
   String? placa,
   String? estado,
-  DocumentReference? servicios,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -110,7 +110,6 @@ Map<String, dynamic> createCitasRecordData({
       'modeloMoto': modeloMoto,
       'Placa': placa,
       'Estado': estado,
-      'Servicios': servicios,
     }.withoutNulls,
   );
 
@@ -122,13 +121,14 @@ class CitasRecordDocumentEquality implements Equality<CitasRecord> {
 
   @override
   bool equals(CitasRecord? e1, CitasRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.cliente == e2?.cliente &&
         e1?.fechaHora == e2?.fechaHora &&
         e1?.motivo == e2?.motivo &&
         e1?.modeloMoto == e2?.modeloMoto &&
         e1?.placa == e2?.placa &&
         e1?.estado == e2?.estado &&
-        e1?.servicios == e2?.servicios;
+        listEquality.equals(e1?.servicios, e2?.servicios);
   }
 
   @override

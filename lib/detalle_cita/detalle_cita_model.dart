@@ -1,10 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'modificar_cita_widget.dart' show ModificarCitaWidget;
+import 'detalle_cita_widget.dart' show DetalleCitaWidget;
 import 'package:flutter/material.dart';
 
-class ModificarCitaModel extends FlutterFlowModel<ModificarCitaWidget> {
-  ///  State fields for stateful widgets in this component.
+class DetalleCitaModel extends FlutterFlowModel<DetalleCitaWidget> {
+  ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
@@ -23,7 +23,9 @@ class ModificarCitaModel extends FlutterFlowModel<ModificarCitaWidget> {
   List<String>? get choiceChipsValues => choiceChipsValueController?.value;
   set choiceChipsValues(List<String>? val) =>
       choiceChipsValueController?.value = val;
-  DateTime? datePicked;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {}

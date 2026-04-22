@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'ver_citas_widget.dart' show VerCitasWidget;
+import 'carrito_de_compras_widget.dart' show CarritoDeComprasWidget;
 import 'package:flutter/material.dart';
 
-class VerCitasModel extends FlutterFlowModel<VerCitasWidget> {
+class CarritoDeComprasModel extends FlutterFlowModel<CarritoDeComprasWidget> {
   @override
   void initState(BuildContext context) {}
 

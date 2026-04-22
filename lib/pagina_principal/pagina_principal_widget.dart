@@ -252,47 +252,7 @@ class _PaginaPrincipalWidgetState extends State<PaginaPrincipalWidget> {
                               0.0, 5.0, 0.0, 5.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed(ReportesWidget.routeName);
-                            },
-                            text: 'Reportes',
-                            icon: Icon(
-                              Icons.document_scanner_sharp,
-                              size: 50.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 350.0,
-                              height: 100.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Colors.black,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                fontFamily: 'WorkSans',
-                                color: Colors.white,
-                                fontSize: 30.0,
-                                letterSpacing: 0.0,
-                                shadows: [
-                                  Shadow(
-                                    color: Color(0xFFC60000),
-                                    offset: Offset(2.0, 2.0),
-                                    blurRadius: 4.0,
-                                  )
-                                ],
-                              ),
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 5.0, 0.0, 5.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed(VentasWidget.routeName);
+                              context.pushNamed(VentasPWidget.routeName);
                             },
                             text: 'Punto de Venta',
                             icon: Icon(

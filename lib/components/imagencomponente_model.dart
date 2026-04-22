@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'factura_widget.dart' show FacturaWidget;
+import 'imagencomponente_widget.dart' show ImagencomponenteWidget;
 import 'package:flutter/material.dart';
 
-class FacturaModel extends FlutterFlowModel<FacturaWidget> {
+class ImagencomponenteModel extends FlutterFlowModel<ImagencomponenteWidget> {
   @override
   void initState(BuildContext context) {}
 

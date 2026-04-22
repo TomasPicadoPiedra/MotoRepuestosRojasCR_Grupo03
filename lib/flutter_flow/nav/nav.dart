@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -107,11 +108,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CitasWidget(),
         ),
         FFRoute(
-          name: VentasWidget.routeName,
-          path: VentasWidget.routePath,
-          builder: (context, params) => VentasWidget(),
-        ),
-        FFRoute(
           name: ReportesWidget.routeName,
           path: ReportesWidget.routePath,
           builder: (context, params) => ReportesWidget(),
@@ -161,11 +157,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: VerCitasWidget.routeName,
-          path: VerCitasWidget.routePath,
-          builder: (context, params) => VerCitasWidget(),
-        ),
-        FFRoute(
           name: InicioValidRolWidget.routeName,
           path: InicioValidRolWidget.routePath,
           builder: (context, params) => InicioValidRolWidget(),
@@ -184,6 +175,65 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: AgregarCitasWidget.routeName,
           path: AgregarCitasWidget.routePath,
           builder: (context, params) => AgregarCitasWidget(),
+        ),
+        FFRoute(
+          name: DetalleCitaWidget.routeName,
+          path: DetalleCitaWidget.routePath,
+          builder: (context, params) => DetalleCitaWidget(
+            citaRef: params.getParam(
+              'citaRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['Citas'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: VentasPWidget.routeName,
+          path: VentasPWidget.routePath,
+          builder: (context, params) => VentasPWidget(),
+        ),
+        FFRoute(
+          name: CarritoDeComprasWidget.routeName,
+          path: CarritoDeComprasWidget.routePath,
+          builder: (context, params) => CarritoDeComprasWidget(
+            cartCodigos: params.getParam<String>(
+              'cartCodigos',
+              ParamType.String,
+              isList: true,
+            ),
+            totalVenta: params.getParam(
+              'totalVenta',
+              ParamType.double,
+            ),
+            productosVenta: params.getParam<DocumentReference>(
+              'productosVenta',
+              ParamType.DocumentReference,
+              isList: true,
+              collectionNamePath: ['Inventario'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: FacturaWidget.routeName,
+          path: FacturaWidget.routePath,
+          builder: (context, params) => FacturaWidget(
+            totalVenta: params.getParam(
+              'totalVenta',
+              ParamType.double,
+            ),
+            productosVenta: params.getParam<DocumentReference>(
+              'productosVenta',
+              ParamType.DocumentReference,
+              isList: true,
+              collectionNamePath: ['Inventario'],
+            ),
+            carCodigo: params.getParam<String>(
+              'carCodigo',
+              ParamType.String,
+              isList: true,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

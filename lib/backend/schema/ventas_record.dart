@@ -46,6 +46,11 @@ class VentasRecord extends FirestoreRecord {
   DocumentReference? get vendedor => _vendedor;
   bool hasVendedor() => _vendedor != null;
 
+  // "ImagenTransferencia" field.
+  String? _imagenTransferencia;
+  String get imagenTransferencia => _imagenTransferencia ?? '';
+  bool hasImagenTransferencia() => _imagenTransferencia != null;
+
   void _initializeFields() {
     _cliente = snapshotData['Cliente'] as DocumentReference?;
     _listaProductos = getDataList(snapshotData['ListaProductos']);
@@ -53,6 +58,7 @@ class VentasRecord extends FirestoreRecord {
     _metodoPago = snapshotData['MetodoPago'] as String?;
     _fechaVenta = snapshotData['FechaVenta'] as DateTime?;
     _vendedor = snapshotData['Vendedor'] as DocumentReference?;
+    _imagenTransferencia = snapshotData['ImagenTransferencia'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -94,6 +100,7 @@ Map<String, dynamic> createVentasRecordData({
   String? metodoPago,
   DateTime? fechaVenta,
   DocumentReference? vendedor,
+  String? imagenTransferencia,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -102,6 +109,7 @@ Map<String, dynamic> createVentasRecordData({
       'MetodoPago': metodoPago,
       'FechaVenta': fechaVenta,
       'Vendedor': vendedor,
+      'ImagenTransferencia': imagenTransferencia,
     }.withoutNulls,
   );
 
@@ -119,7 +127,8 @@ class VentasRecordDocumentEquality implements Equality<VentasRecord> {
         e1?.total == e2?.total &&
         e1?.metodoPago == e2?.metodoPago &&
         e1?.fechaVenta == e2?.fechaVenta &&
-        e1?.vendedor == e2?.vendedor;
+        e1?.vendedor == e2?.vendedor &&
+        e1?.imagenTransferencia == e2?.imagenTransferencia;
   }
 
   @override
@@ -129,7 +138,8 @@ class VentasRecordDocumentEquality implements Equality<VentasRecord> {
         e?.total,
         e?.metodoPago,
         e?.fechaVenta,
-        e?.vendedor
+        e?.vendedor,
+        e?.imagenTransferencia
       ]);
 
   @override
